@@ -7,20 +7,34 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
 function pigLatin(word) {
-
-  // Your code here
-
-}
-
-
-function getPrompt() {
-  rl.question('word ', (answer) => {
-    console.log( pigLatin(answer) );
-    getPrompt();
-  });
-}
+  var lower = word.trim().toLowerCase();
+  var split = lower.split("");
+  if (split[0] === 'a' || split[0] === 'e' || split[0]=== 'i' || split[0] === 'o' || split[0] === 'u'
+  || split[0] === 'A' || split[0] === 'E' || split[0]==='I' || split[0] ==='O' || split[0] === 'U') {
+  split.push('yay')
+  var str = split.join("")
+  return str     
+  } else if (split[0] !== 'a'||'e'||'i'||'o'||'u' || 'y'){
+    var i;
+    const ar = [];
+    var dog = [];
+    for (i = 0; i < word.length; i++){
+      ar.push(split[0]);
+      split.shift();
+      if (split[i] === 'a' ||split[i] === 'e' || split[i] === 'i' || split[i] === 'o' || split[i] === 'u'){
+        break;}
+      // } else {
+      //   continue;
+      }
+    
+ // split.push(dog);
+  split.push(ar.join(""));
+  split.push('ay');
+  var str = split.join("");
+  console.log(str);
+  return str;
+}}
 
 // Tests
 
