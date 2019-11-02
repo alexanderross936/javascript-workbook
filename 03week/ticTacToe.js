@@ -1,3 +1,4 @@
+// finished
 // put peice on board.
 // Get it to swich players.
 
