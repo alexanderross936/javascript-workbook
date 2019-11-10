@@ -15,7 +15,7 @@ function pigLatin(word) {
   split.push('yay')
   var str = split.join("")
   return str     
-  } else if (split[0] !== 'a'||'e'||'i'||'o'||'u' || 'y'){
+  } else if (split[0] !== 'a'||'e'||'i'||'o'||'u' ){
     var i;
     const ar = [];
     var dog = [];
@@ -32,7 +32,6 @@ function pigLatin(word) {
   split.push(ar.join(""));
   split.push('ay');
   var str = split.join("");
-  console.log(str);
   return str;
 }}
 
