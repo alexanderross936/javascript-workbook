@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script>
+function pigLatin() {
+  var word = document.getElementById("text1").value;
+  var lower = word.trim().toLowerCase();
+  var split = lower.split("");
+  if (split[0] === 'a' || split[0] === 'e' || split[0]=== 'i' || split[0] === 'o' || split[0] === 'u'
+  || split[0] === 'A' || split[0] === 'E' || split[0]==='I' || split[0] ==='O' || split[0] === 'U') {
+  split.push('yay')
+  var str = split.join("")
+  document.getElementById("mydiv").innerHTML = str;     
+  } else if (split[0] !== 'a'||'e'||'i'||'o'||'u' ){
+    var i;
+    const ar = [];
+    var dog = [];
+    for (i = 0; i < word.length; i++){
+      ar.push(split[0]);
+      split.shift();
+      if (split[i] === 'a' ||split[i] === 'e' || split[i] === 'i' || split[i] === 'o' || split[i] === 'u'){
+        break;}
+      // } else {
+      //   continue;
+      }
+    
+ // split.push(dog);
+  split.push(ar.join(""));
+  split.push('ay');
+  var str = split.join("");
+  document.getElementById("mydiv").innerHTML = str; 
+}}
+</script>
+</head>
+<body>
+  <input id="text1" placeholder="Any Word">
+  <br>
+  <button onclick="pigLatin()" id="btn1">Submit</button><br><br><br>
+  <div id = "mydiv"></div>
+
+</body>
+</html>
