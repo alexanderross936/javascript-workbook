@@ -7,6 +7,8 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+
+
 let stacks = {
   a: [4, 3, 2, 1],
   b: [],
@@ -19,25 +21,59 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
-  // Your code here
+function movePiece(startStack, endStack) {
+  var popstore = stacks[startStack].pop();
+  stacks[endStack].push(popstore);
 
 }
 
-function isLegal() {
-  // Your code here
-
+function isLegal(startStack, endStack) {
+  var startStackLength = stacks[startStack].length;
+  var endStackLength = stacks[endStack].length;
+  if (
+    startStackLength === 0 || 
+    startStack == endStack ||
+    stacks[startStack][startStackLength - 1] > stacks[endStack][endStackLength - 1]){
+    return false;
+  }
+  return true;
 }
 
 function checkForWin() {
-  // Your code here
-
+  if (stacks.b.length === 4 || stacks.c.length === 4){
+    return true;
+  }
+return false;
 }
 
-function towersOfHanoi(startStack, endStack) {
-  // Your code here
+// function towersOfHanoi(startStack, endStack) {
+//   //var pusher = startStack.slice(-1);
+//   //var pusher2 = pusher[0];
+//   var popstore = startStack.pop();
+//   endStack.push(popstore);
+//   return stacks;
+// }
 
+function towersOfHanoi (startStack, endStack) {
+  if (isLegal(startStack, endStack)){
+    movePiece(startStack, endStack);
+  } else {
+    return "Invalid Move.";
+  }
+  if (checkForWin()){
+    return "You won!";
+  }
 }
+
+// function towersOfHanoi(startStack, endStack) {
+//   var pusher = startStack.slice(0);
+//   var pusher2 = pusher[0];
+//   var popstore = startStack.pop();
+//   // console.log(popstore);
+//   endStack.push(popstore);
+//   return stacks;
+
+// }
 
 function getPrompt() {
   printStacks();
