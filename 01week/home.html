@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript rendering</title>
+</head>
+<body>
+	<style>
+table {
+	border: 5px solid black;
+	border-spacing: 5px;
+}
+td {
+	border: 5px solid black;
+	padding: 80px;
+}
+</style>
+	<table>
+		<tr>
+			<td data-row="0" data-col="0" class="board-square"></td>
+			<td data-row="0" data-col="1" class="board-square"></td>
+			<td data-row="0" data-col="2" class="board-square"></td>
+		</tr>
+		<tr>
+			<td data-row="1" data-col="0" class="board-square"></td>
+			<td data-row="1" data-col="1" class="board-square"></td>
+			<td data-row="1" data-col="2" class="board-square"></td>
+		</tr>
+		<tr>
+			<td data-row="2" data-col="0" class="board-square"></td>
+			<td data-row="2" data-col="1" class="board-square"></td>
+			<td data-row="2" data-col="2" class="board-square"></td>
+		</tr></table>
+
+<script>
+	// Check empty space
+
+ const squares = document.querySelectorAll('.board-square');
+ let playerTurn = 'X';
+
+function changePlayer() {
+  // Your code here
+  // manipulate board array
+  // manipulate player turn variable
+  // let selectedRow = board[row];
+  // selectedRow[column] = playerTurn;
+  if (playerTurn === 'X'){
+    playerTurn = 'O';
+  } else if (playerTurn === 'O'){
+    playerTurn = 'X';
+  }
+ console.log(playerTurn);
+}
+
+
+function ticTacToe(row, column, square){
+	if (isValidMove(row, column)){
+		board[row][column] = playerTurn;
+		square.textContent = playerTurn;
+	}	else {
+		changePlayer();
+		console.log("Invalid move, try again.");
+		
+	}
+	if (checkForWin()){
+		alert("Player " + playerTurn + "Wins!");
+	} else {
+		changePlayer();
+	}
+}
+function isValidMove(row, column){
+	const validMoves = ["0", "1", "2"];
+	if (
+		validMoves.includes(row.toString()) &&
+		validMoves.includes(column.toString()) &&
+		board[row][column] === " "
+		) {
+		return true;
+	}
+	return false;
+}
+
+
+function emptySpace(row, column){
+	if (board[row][column] === ' '){
+		return true;
+	}
+}
+
+squares.forEach(function (item) {
+	item.addEventListener("click", handleClick);
+});
+function handleClick(event){
+	let square = event.target;
+	//square.textContent = playerTurn;
+	let squareCol = square.dataset.col;
+	let squareRow = square.dataset.row;
+	ticTacToe(squareCol, squareRow, square);
+}
+	let board = [
+  [' ', ' ', ' '],
+  [' ', ' ', ' '],
+  [' ', ' ', ' ']
+];
+
+
+function printBoard() {
+  console.log('   0  1  2');
+  console.log('0 ' + board[0].join(' | '));
+  console.log('  ---------');
+  console.log('1 ' + board[1].join(' | '));
+  console.log('  ---------');
+  console.log('2 ' + board[2].join(' | '));
+}
+
+function horizontalWin() {
+  // Check rows of board for match.
+  if (board[0][0] === playerTurn 
+    && board[0][1] === playerTurn 
+    && board[0][2] === playerTurn)
+    {
+      return true;
+  } else if(board[1][0] === playerTurn 
+    && board[1][1] === playerTurn 
+    && board[1][2] === playerTurn) {
+      return true;
+  } else if(board[2][0] === playerTurn 
+    && board[2][1] === playerTurn 
+    && board[2][2] === playerTurn) {
+      return true;
+  } else {
+    return false;
+  }
+}
+
+function verticalWin() {
+  // Your code here
+  //Check columns of board for match
+  if (board[0][0] === playerTurn 
+    && board[1][0] === playerTurn 
+    && board[2][0] === playerTurn)
+    {
+      return true;
+  } else if(board[0][1] === playerTurn 
+    && board[1][1] === playerTurn 
+    && board[2][1] === playerTurn) {
+      return true;
+  } else if(board[0][2] === playerTurn 
+    && board[1][2] === playerTurn 
+    && board[2][2] === playerTurn) {
+      return true;
+  } else {
+    return false;
+  }
+}
+
+function diagonalWin() {
+  // Your code here
+  if (board[0][0] === playerTurn 
+    && board[1][1] === playerTurn 
+    && board[2][2] === playerTurn)
+    {
+      return true;
+  } else if(board[0][2] === playerTurn 
+    && board[1][1] === playerTurn 
+    && board[2][0] === playerTurn) {
+      return true;
+  } else {
+    return false;
+  }
+}
+
+function checkForWin() {
+  // Your code here
+  // Check for horizontal, vertical, diagonal wins
+  // return true if any condition is true.
+  if (horizontalWin() === true || verticalWin() === true || diagonalWin() === true){
+    return true;
+    console.log(playerTurn + 'Wins!');
+  } else {
+    return false
+  }
+}
+
+
+</script>
+</body>
+</html>
