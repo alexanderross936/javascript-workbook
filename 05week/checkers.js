@@ -8,13 +8,22 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
+class Checker {
+  constructor(color){
+    if(color === 'white'){
+      this.symbol = String.fromCharCode(0x125CB);
+    } else if (color === 'black'){
+      this.symbol = String.fromCharCode(0x125CF);
+    }
+    
+  }
   // Your code here
-}
+};
 
 class Board {
   constructor() {
-    this.grid = []
+    this.grid = [];
+    this.checkers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -51,7 +60,15 @@ class Board {
     }
     console.log(string);
   }
+  createCheckers(){
 
+  }
+  selectCheckers(){
+
+  }
+  killChecker(){
+    
+  }
   // Your code here
 }
 
@@ -72,6 +89,7 @@ function getPrompt() {
       getPrompt();
     });
   });
+
 }
 
 const game = new Game();
