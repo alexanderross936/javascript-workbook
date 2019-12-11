@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head><title></title>
+	</head>
+  		<body>
+  			<h1>Character Counter Tool</h1><br><br><br>
+    <input type="Text" id="textbox">
+    <input type="submit" value="Submit" onclick="getFrequency()"/><br>
+        <div id="output"></div>
+      	<script>
+ function getFrequency() {
+ const string = document.getElementById("textbox").value.toLowerCase();
+ //const stringcheck = string;
+ var letters = /^[A-Za-z]+$/;
+ 	if(string.match(letters)){
+  		const freq = {};
+    	for (var i=0; i<string.length;i++) {
+        var character = string.charAt(i);
+        	if (freq[character]) {
+           freq[character]++;
+        	} else {
+           freq[character] = 1;
+        	}
+		}
+    var my_obj_str = JSON.stringify(freq);
+            document.getElementById("output").innerHTML = my_obj_str;
+    //return freq;
+    } else {
+    	freq = "Please enter valid text.";
+    	document.getElementById("output").innerHTML = freq;
+    }
+};
+
+const self = document.getElementById("textbox"); 
+
+</script>
+  </body>
+</html>
