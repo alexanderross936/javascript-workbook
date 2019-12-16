@@ -1,3 +1,4 @@
+// Provided first array of people who could be potential players.
 const arrOfPeople = [
     {
       id: 2,
@@ -50,10 +51,12 @@ const arrOfPeople = [
     },
   ]
   
+  // Here we prepare arrays for the players and teams.
   const listOfPlayers = []
   const blueTeam = []
   const redTeam = []
   
+  // Here we make classes for the players and teams.
   class player {
     constructor(person, canthrow){
         this.person = person,
@@ -74,7 +77,7 @@ class redTeammate {
     
   }
 }
-  
+// This function will display the people provided as potential players.
   const listPeopleChoices = () => {
     const listElement = document.getElementById('people')
     listElement.innerHTML = ''
@@ -89,6 +92,7 @@ class redTeammate {
     })
   }
   
+  // Here we enable players to be made from the provided list of people
   const makePlayer = (id) => {
     console.log(`li ${id} was clicked!`)
     let index = arrOfPeople.findIndex((person)=> id === person.id)
@@ -98,6 +102,8 @@ class redTeammate {
     listPeopleChoices()
   }
 
+// Here we create a listPlayers() function which will be inserted into the makePlayer() function.
+// This appends everything to a <li> tag then appends all of them to the listElement.
   const listPlayers = () => {
     let listElement = document.getElementById('players')
     listElement.innerHTML = ''
@@ -105,8 +111,6 @@ class redTeammate {
     listOfPlayers.map( player => {
         const li = document.createElement("li")
         console.log(listOfPlayers)
-      // var my_obj_str = JSON.stringify(listOfPlayers);
-       // document.getElementById('players').innerHTML = my_obj_str;
         const buttonRed = document.createElement("button")
         buttonRed.innerHTML = "Red Team"
         const buttonBlue = document.createElement("button")
@@ -120,37 +124,34 @@ class redTeammate {
         console.log(listElement)
     })
   }
-const addBlue = (id) =>{
-console.log(`li ${id} was clicked!`)
-console.log(blueTeam,'ads;lfkj')
 
-let index = listOfPlayers.findIndex((player)=> id === player.person.id)
-console.log(listOfPlayers[index],'a;sldkfj;lehwhevlnkjlshrihgl')
-blueTeam.push(new blueTeammate(listOfPlayers[index].person))
-// console.log(index)
-// blueTeam.push(listOfPlayers[index])
-listOfPlayers.splice(index, 1)
-console.log('blue', blueTeam)
-let listElement = document.getElementById('blue')
-listElement.innerHTML = ''
-console.log(listElement)
-listPlayers()
-blueTeam.map( player => {
-    const li = document.createElement("li")
-    console.log(player, 'aheslid')
-  // var my_obj_str = JSON.stringify(listOfPlayers);
-   // document.getElementById('players').innerHTML = my_obj_str;
-    li.appendChild(document.createTextNode(player.player.name + " - " + player.player.skillSet))
-    listElement.append(li)
+// Here we create the function to add to the blue team.
+const addBlue = (id) =>{
+    console.log(`li ${id} was clicked!`)
+    console.log(blueTeam,'ads;lfkj')
+    let index = listOfPlayers.findIndex((player)=> id === player.person.id)
+    console.log(listOfPlayers[index],'a;sldkfj;lehwhevlnkjlshrihgl')
+    blueTeam.push(new blueTeammate(listOfPlayers[index].person))
+    listOfPlayers.splice(index, 1)
+    console.log('blue', blueTeam)
+    let listElement = document.getElementById('blue')
+    listElement.innerHTML = ''
     console.log(listElement)
+    listPlayers()
+    blueTeam.map( player => {
+        const li = document.createElement("li")
+        console.log(player, 'aheslid')
+        li.appendChild(document.createTextNode(player.player.name + " - " + player.player.skillSet))
+        listElement.append(li)
+        console.log(listElement)
     
 })
 }
 
+// And here we create the function to add to the red team.
 const addRed = (id) =>{
     console.log(`li ${id} was clicked!`)
     console.log(redTeam,'ads;lfkj')
-    
     let index = listOfPlayers.findIndex((player)=> id === player.person.id)
     console.log(listOfPlayers[index],'a;sldkfj;lehwhevlnkjlshrihgl')
     redTeam.push(new redTeammate(listOfPlayers[index].person))
@@ -165,8 +166,6 @@ const addRed = (id) =>{
     redTeam.map( player => {
         const li = document.createElement("li")
         console.log(player, 'aheslid')
-      // var my_obj_str = JSON.stringify(listOfPlayers);
-       // document.getElementById('players').innerHTML = my_obj_str;
         li.appendChild(document.createTextNode(player.player.name + " - " + player.player.skillSet))
         listElement.append(li)
         console.log(listElement)
@@ -174,6 +173,7 @@ const addRed = (id) =>{
     })
     }
 
+// Tests
 const assert = require('assert')
 it('Can add people to players', () => {
     makePlayer("Alex")
